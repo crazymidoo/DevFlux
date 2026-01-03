@@ -55,7 +55,6 @@ header nav a {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Animazione riga nera sotto i link */
 header nav a::after {
   content: "";
   position: absolute;
@@ -152,7 +151,7 @@ header nav button:hover {
 }
 
 .course-card {
-  background-color: #ececec; /* più scuro dello sfondo bianco */
+  background-color: #ececec;
   border-radius: 14px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -208,21 +207,35 @@ header nav button:hover {
 
 .form-container {
   max-width: 400px;
-  margin: 120px auto 0;
-  padding: 2rem;
+  margin: 120px auto;
+  padding: 2rem 3rem 2rem 4rem;
   background-color: #f7f7f7;
   border-radius: 14px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   color: #111111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form-container h2 {
+  margin-bottom: 1.5rem;
+  color: #111;
+  text-align: center;
 }
 
 .form-container input {
+  width: 100%;
+  max-width: 350px;
   padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
   border: 1px solid #cccccc;
   border-radius: 6px;
   font-size: 1rem;
   background-color: #ffffff;
   color: #111111;
+  box-sizing: border-box;
 }
 
 .form-container input::placeholder {
@@ -230,11 +243,14 @@ header nav button:hover {
 }
 
 .form-button {
+  width: 100%;
+  max-width: 350px;
+  margin-top: 0.5rem;
   background-color: #222222;
   color: #ffffff;
   border: none;
   border-radius: 8px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -245,14 +261,31 @@ header nav button:hover {
 }
 
 .back-button {
+  align-self: flex-start;
+  margin-bottom: 1.5rem;
   background: none;
   border: none;
   font-size: 1rem;
   font-weight: 500;
   color: #222222;
   cursor: pointer;
-  margin-bottom: 1rem;
-  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #444444;
+}
+
+
+.back-button {
+  align-self: flex-start;
+  margin-bottom: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222222;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 
@@ -261,13 +294,25 @@ header nav button:hover {
 }
 
 .course-container input {
+  width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #cccccc;
   border-radius: 6px;
   font-size: 1rem;
-  background-color: #ffffff; /* uguale a login/registrazione */
-  color: #111111;            /* testo scuro */
-  width: 100%;
+  background-color: #ffffff;
+  color: #111111;
   box-sizing: border-box;
-  margin-bottom: 1rem;       /* distanza dal pulsante Accedi */
+  margin-bottom: 1rem;
+}
+
+.link-to-course {
+  color: #222222;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.link-to-course:hover {
+  color: #444444;
 }

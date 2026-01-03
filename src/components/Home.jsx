@@ -51,13 +51,14 @@ function Home({ user, setUser }) {
 
             <p className="access-link">
               Oppure accedi con password:{" "}
-              <span
-                className="link-text"
+              <span 
+                className="link-to-course" 
                 onClick={() => navigate("/course")}
-              >
+               >
                 Vai al corso
               </span>
             </p>
+
           </div>
         </div>
 
