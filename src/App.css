@@ -27,10 +27,14 @@ header {
 }
 
 header .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.7rem;
+  font-weight: 800;
   color: #222222;
-  text-decoration: none;
+  background: linear-gradient(90deg, #222222, #555555);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #222222;
+  letter-spacing: 1px;
 }
 
 header nav {
@@ -129,7 +133,7 @@ header nav button:hover {
 
 .home-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 6rem;
   padding: 120px 2rem 3rem;
   background-color: #ffffff;
 }
@@ -316,3 +320,16 @@ header nav button:hover {
 .link-to-course:hover {
   color: #444444;
 }
+
+.contact-item {
+  color: #222222;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.contact-item:hover {
+  color: #444444;
+}
+
