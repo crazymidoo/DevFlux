@@ -1,42 +1,44 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* Container principale della home */
+.home-container {
   padding: 2rem;
-  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background-color: #111; /* sfondo scuro */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Lista dei corsi */
+.courses-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Singola card corso */
+.course-card {
+  border: 1px solid #0ff;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+  background-color: #111;
+  color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Bottone PayPal */
+.buy-button {
+  padding: 0.5rem 1rem;
+  background-color: #0ff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.card {
-  padding: 2em;
+/* Hover sul bottone */
+.buy-button:hover {
+  background-color: #0cc;
 }
 
-.read-the-docs {
-  color: #888;
+/* Link di accesso */
+.access-link {
+  margin-top: 0.5rem;
 }
