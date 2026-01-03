@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -11,16 +14,16 @@ function Login({ setUser }) {
       const res = await fetch(
         "https://expert-system-v66xxgwx5jw9hxrrj-5000.app.github.dev/login",
         {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
         }
-);
-
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg);
+
       setUser({ email, courses: data.courses });
-      setMsg("Login effettuato con successo!");
+      navigate("/");
     } catch (err) {
       setMsg(err.message);
     }
@@ -28,6 +31,7 @@ function Login({ setUser }) {
 
   return (
     <div className="form-container">
+      <button className="back-button" onClick={() => navigate(-1)}>↩ Indietro</button>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input

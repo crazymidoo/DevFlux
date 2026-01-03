@@ -1,27 +1,47 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-function Home() {
+function Home({ user, setUser }) {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
+  const handleLogout = () => {
+    setUser(null);
+    setOpen(false);
+  };
 
   return (
     <>
       <header>
-  <Link to="/" className="logo">CorsiInfo</Link>
-  <nav>
-    <Link to="/">Home</Link>
-    <Link to="/about">Chi siamo</Link>
-    <Link to="/contact">Contatti</Link>
-    <div className="nav-buttons">
-      <button onClick={() => navigate("/register")}>Registrati</button>
-      <button onClick={() => navigate("/login")}>Accedi</button>
-    </div>
-  </nav>
-</header>
+        <span className="logo">CorsiInfo</span>
 
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#about">Chi siamo</a>
+          <a href="#contact">Contatti</a>
 
-      <div className="home-container">
+          {user ? (
+            <div className="user-menu">
+              <button className="user-email" onClick={() => setOpen(!open)}>
+                {user.email}
+              </button>
+              {open && (
+                <div className="dropdown">
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="nav-buttons">
+              <button onClick={() => navigate("/register")}>Registrati</button>
+              <button onClick={() => navigate("/login")}>Accedi</button>
+            </div>
+          )}
+        </nav>
+      </header>
+
+      <div className="home-container" id="home">
         <h1>Corsi di Informatica</h1>
         <p>Scopri tutti i nostri corsi di programmazione base!</p>
 
@@ -30,26 +50,27 @@ function Home() {
             <h2>Corso Python Base</h2>
             <p>Prezzo: 49€</p>
 
-            <form
-              action="https://www.paypal.com/cgi-bin/webscr"
-              method="post"
-              target="_blank"
-            >
-              <input type="hidden" name="cmd" value="_xclick" />
-              <input type="hidden" name="business" value="ahmedmoustafadev@gmail.com" />
-              <input type="hidden" name="item_name" value="Corso Python Base" />
-              <input type="hidden" name="amount" value="49.00" />
-              <input type="hidden" name="currency_code" value="EUR" />
-              <input type="hidden" name="return" value="http://localhost:5173/success" />
-
-              <input type="submit" value="Compra il corso" className="buy-button"/>
-            </form>
-
             <p className="access-link">
-              Oppure accedi con password: <Link to="/course">Vai al corso</Link>
+              Oppure accedi con password:{" "}
+              <button 
+                className="link-button" 
+                onClick={() => navigate("/course")}
+              >
+                Vai al corso
+              </button>
             </p>
           </div>
         </div>
+
+        <section id="about">
+          <h2>Chi siamo</h2>
+          <p>Testo della sezione Chi siamo...</p>
+        </section>
+
+        <section id="contact">
+          <h2>Contatti</h2>
+          <p>Testo della sezione Contatti...</p>
+        </section>
       </div>
     </>
   );

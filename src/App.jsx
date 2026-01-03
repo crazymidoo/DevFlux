@@ -10,8 +10,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Home user={user} />} />
-      <Route path="/course" element={<Course user={user} />} />
+      <Route path="/" element={<Home user={user} setUser={setUser} />} />
+      <Route path="/course" element={<Course user={user} setUser={setUser} />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login setUser={setUser} />} />
     </Routes>

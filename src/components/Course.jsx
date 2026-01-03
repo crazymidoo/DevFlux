@@ -1,22 +1,23 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import "../App.css";
 
 function Course() {
-  const [password, setPassword] = useState("")
-  const [accessGranted, setAccessGranted] = useState(false)
+  const [password, setPassword] = useState("");
+  const [accessGranted, setAccessGranted] = useState(false);
 
-  const correctPassword = "1234" // password temporanea
+  const correctPassword = "1234";
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (password === correctPassword) {
-      setAccessGranted(true)
+      setAccessGranted(true);
     } else {
-      alert("Password errata! 🔒")
+      alert("Password errata! 🔒");
     }
-  }
+  };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial" }}>
+    <div className="home-container">
       {!accessGranted ? (
         <div>
           <h1>Accesso al Corso Python Base 🔒</h1>
@@ -27,9 +28,12 @@ function Course() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              style={{ padding: "0.5rem", marginRight: "0.5rem" }}
+              className="form-input"
+              required
             />
-            <button type="submit" style={{ padding: "0.5rem" }}>Accedi</button>
+            <button type="submit" className="form-button">
+              Accedi
+            </button>
           </form>
         </div>
       ) : (
@@ -46,7 +50,7 @@ function Course() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default Course
+export default Course;

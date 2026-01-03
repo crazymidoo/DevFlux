@@ -1,23 +1,23 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const res = await fetch(
         "https://expert-system-v66xxgwx5jw9hxrrj-5000.app.github.dev/register",
-    {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-    }
-);
-
-
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg);
       setMsg("Registrazione completata! Ora puoi fare login.");
@@ -28,6 +28,7 @@ function Register() {
 
   return (
     <div className="form-container">
+      <button className="back-button" onClick={() => navigate(-1)}>↩ Indietro</button>
       <h2>Registrazione</h2>
       <form onSubmit={handleRegister}>
         <input
@@ -44,7 +45,7 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Registrati</button>
+        <button type="submit" className="form-button">Registrati</button>
       </form>
       {msg && <p>{msg}</p>}
     </div>
