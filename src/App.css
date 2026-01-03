@@ -261,3 +261,13 @@ header nav button:hover {
   background-color: #222266;
   color: #ffdddd;
 }
+.link-text {
+  color: #aaddff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.link-text:hover {
+  color: #ffffff;
+}

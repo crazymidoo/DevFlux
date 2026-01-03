@@ -1,37 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Course() {
   const [password, setPassword] = useState("");
   const [accessGranted, setAccessGranted] = useState(false);
+  const navigate = useNavigate();
 
-  const correctPassword = "1234";
+  const correctPassword = "1234"; // password temporanea
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === correctPassword) {
       setAccessGranted(true);
     } else {
-      alert("Password errata! 🔒");
+      alert("Password errata!");
     }
   };
 
   return (
-    <div className="home-container">
+    <div className="form-container">
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ↩  Indietro
+      </button>
+
       {!accessGranted ? (
         <div>
-          <h1>Accesso al Corso Python Base 🔒</h1>
+          <h1>Accesso al Corso Python Base</h1>
           <p>Inserisci la password che hai ricevuto dopo il pagamento:</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className="form-input"
-              required
+              style={{ padding: "0.75rem", fontSize: "1rem", borderRadius: "6px", border: "1px solid #3a3f9f", backgroundColor: "#14197d", color: "#ffffff" }}
             />
-            <button type="submit" className="form-button">
+            <button type="submit" className="form-button" style={{ padding: "0.75rem 1.5rem", fontWeight: 600 }}>
               Accedi
             </button>
           </form>
