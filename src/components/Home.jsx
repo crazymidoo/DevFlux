@@ -14,7 +14,7 @@ function Home({ user, setUser }) {
   return (
     <>
       <header>
-        <span className="logo">CorsiInfo</span>
+        <span className="logo">DevFlux</span>
 
         <nav>
           <a href="#home">Home</a>
@@ -42,7 +42,6 @@ function Home({ user, setUser }) {
       </header>
 
       <div className="home-container" id="home">
-        <h1>Corsi di Informatica</h1>
         <p>Scopri tutti i nostri corsi di programmazione base!</p>
 
         <div className="courses-list">
