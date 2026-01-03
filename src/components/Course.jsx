@@ -34,7 +34,7 @@ function Course() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              style={{ padding: "0.75rem", fontSize: "1rem", borderRadius: "6px", border: "1px solid #3a3f9f", backgroundColor: "#14197d", color: "#ffffff" }}
+                className="course-container"
             />
             <button type="submit" className="form-button" style={{ padding: "0.75rem 1.5rem", fontWeight: 600 }}>
               Accedi

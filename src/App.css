@@ -40,13 +40,36 @@ header nav {
   padding-right: 6rem;
 }
 
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
 header nav a {
+  position: relative;
   text-decoration: none;
   color: #222222;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Animazione riga nera sotto i link */
+header nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 4px;
+  width: 0;
+  background-color: #000000;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+header nav a:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 header nav a:hover {
@@ -81,8 +104,7 @@ header nav button:hover {
 .user-menu .dropdown {
   position: absolute;
   top: 100%;
-  left: 75%;
-  transform: translateX(-50%);
+  left: 0;
   background-color: #f2f2f2;
   border-radius: 6px;
   padding: 0.5rem 0;
@@ -98,17 +120,12 @@ header nav button:hover {
   padding: 0.5rem 1rem;
   font-weight: 500;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   width: auto;
 }
 
 .dropdown button:hover {
   background-color: #e0e0e0;
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 0.5rem;
 }
 
 .home-container {
@@ -135,12 +152,12 @@ header nav button:hover {
 }
 
 .course-card {
-  background-color: #e0e0e0; /* grigio chiaro, più scuro dello sfondo bianco */
+  background-color: #ececec; /* più scuro dello sfondo bianco */
   border-radius: 14px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  border: 1px solid #ddd;
-  color: #111; /* testo scuro */
+  border: 1px solid #ccc;
+  color: #111;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -148,7 +165,6 @@ header nav button:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
-
 
 .course-card h2 {
   margin-top: 0;
@@ -242,4 +258,16 @@ header nav button:hover {
 
 .back-button:hover {
   color: #444444;
+}
+
+.course-container input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #ffffff; /* uguale a login/registrazione */
+  color: #111111;            /* testo scuro */
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1rem;       /* distanza dal pulsante Accedi */
 }

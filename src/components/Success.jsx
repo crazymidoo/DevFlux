@@ -27,7 +27,7 @@ function Success({ user }) {
 
   return (
     <div style={{ padding: "2rem", fontFamily: "Arial" }}>
-      <h1>Pagamento completato ✅</h1>
+      <h1>Pagamento completato!</h1>
       <p>Il tuo corso è stato sbloccato! Reindirizzamento in corso...</p>
     </div>
   );
