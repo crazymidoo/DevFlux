@@ -1,4 +1,3 @@
-// src/components/Course.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
@@ -9,7 +8,6 @@ function Course({ user }) {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
-  // 🔑 Ripristina user da localStorage se manca
   useEffect(() => {
     if (user) {
       setCurrentUser(user);
@@ -21,7 +19,6 @@ function Course({ user }) {
     }
   }, [user]);
 
-  // ⏳ Mostra caricamento se user non pronto
   if (currentUser === null) {
     return (
       <div className="form-container">
@@ -38,7 +35,6 @@ function Course({ user }) {
       return;
     }
 
-    // Cerca la password del corso Python Base
     const courseData = currentUser.courses.find(c => c.name === "Python Base");
 
     if (courseData && password === courseData.password) {

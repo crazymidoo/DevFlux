@@ -10,7 +10,6 @@ import Success from "./components/Success.jsx";
 function App() {
   const [user, setUser] = useState(null);
 
-  // 🔑 RIPRISTINO UTENTE DOPO REFRESH (PAYPAL)
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {

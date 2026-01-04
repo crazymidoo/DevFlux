@@ -10,7 +10,6 @@ function Success({ user, setUser }) {
   useEffect(() => {
     let currentUser = user;
 
-    // 🔑 Ripristina utente da localStorage
     if (!currentUser) {
       const saved = localStorage.getItem("user");
       if (saved) {
@@ -24,7 +23,6 @@ function Success({ user, setUser }) {
       return;
     }
 
-    // Controlla se corso già sbloccato
     const existingCourse = currentUser.courses?.find(c => c.name === "Python Base");
     if (existingCourse) {
       setPassword(existingCourse.password);
@@ -32,17 +30,14 @@ function Success({ user, setUser }) {
       return;
     }
 
-    // Parametri PayPal
     const params = new URLSearchParams(location.search);
     const payerID = params.get("PayerID");
     const token = params.get("token");
 
-    // Log se parametri mancanti
     if (!payerID || !token) {
       console.warn("Parametri PayPal mancanti, procedo comunque...");
     }
 
-    // 🔓 Sblocca corso
     fetch("https://expert-system-v66xxgwx5jw9hxrrj-5000.app.github.dev/unlock-course", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -53,7 +48,6 @@ function Success({ user, setUser }) {
     })
       .then(res => res.json())
       .then(data => {
-        // Aggiorna password nello stato e localStorage
         setPassword(data.password);
         const updatedUser = {
           ...currentUser,
@@ -73,7 +67,7 @@ function Success({ user, setUser }) {
 
   return (
     <div className="form-container">
-      <h2>Pagamento completato ✅</h2>
+      <h2>Pagamento completato!</h2>
 
       {loading ? (
         <p>Caricamento in corso...</p>

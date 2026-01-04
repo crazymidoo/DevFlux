@@ -264,7 +264,7 @@ header nav button:hover {
 .contact-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* più distanza tra i contatti */
+  gap: 2rem; 
 }
 
 .contact-card {

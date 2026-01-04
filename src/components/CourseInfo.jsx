@@ -1,4 +1,3 @@
-// src/components/CourseInfo.jsx
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../App.css";

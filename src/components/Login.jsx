@@ -23,16 +23,13 @@ function Login({ setUser }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg);
 
-      // 🔐 utente loggato
       const loggedUser = {
         email,
         courses: data.courses || [],
       };
 
-      // ✅ SALVA IN LOCALSTORAGE (FONDAMENTALE PER PAYPAL)
       localStorage.setItem("user", JSON.stringify(loggedUser));
 
-      // ✅ SALVA IN STATO REACT
       setUser(loggedUser);
 
       navigate("/");
