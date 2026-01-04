@@ -3,7 +3,9 @@
     {
       "email": "abc@gmail.com",
       "password": "password",
-      "courses": []
+      "courses": [
+        "Python Base"
+      ]
     },
     {
       "email": "test@devflux.it",

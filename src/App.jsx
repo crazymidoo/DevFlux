@@ -25,7 +25,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login setUser={setUser} />} />
       <Route path="/course-info/:id" element={<CourseInfo />} />
-      <Route path="/success" element={<Success user={user} />} />
+      <Route path="/success" element={<Success user={user} setUser={setUser} />} />
     </Routes>
   );
 }

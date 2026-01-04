@@ -1,3 +1,4 @@
+// src/components/Course.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
@@ -8,7 +9,7 @@ function Course({ user }) {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
-  // 🔑 ripristina user da localStorage
+  // 🔑 Ripristina user da localStorage se manca
   useEffect(() => {
     if (user) {
       setCurrentUser(user);
@@ -20,7 +21,7 @@ function Course({ user }) {
     }
   }, [user]);
 
-  // ⏳ ancora in caricamento
+  // ⏳ Mostra caricamento se user non pronto
   if (currentUser === null) {
     return (
       <div className="form-container">
@@ -37,9 +38,8 @@ function Course({ user }) {
       return;
     }
 
-    const courseData = currentUser.courses.find(
-      (c) => c.name === "Python Base"
-    );
+    // Cerca la password del corso Python Base
+    const courseData = currentUser.courses.find(c => c.name === "Python Base");
 
     if (courseData && password === courseData.password) {
       setAccessGranted(true);
@@ -58,8 +58,10 @@ function Course({ user }) {
         <>
           <h2>Accesso al Corso Python Base</h2>
           <p>Inserisci la password ricevuta dopo il pagamento:</p>
-
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          >
             <input
               type="password"
               value={password}

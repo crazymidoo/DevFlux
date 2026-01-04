@@ -1,4 +1,3 @@
-// src/components/Success.jsx
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -9,34 +8,41 @@ function Success({ user, setUser }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 🔁 Recupera l'utente da localStorage se manca
     let currentUser = user;
+
+    // 🔑 Ripristina utente da localStorage
     if (!currentUser) {
-      const savedUser = localStorage.getItem("user");
-      if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        setUser(currentUser);
+      const saved = localStorage.getItem("user");
+      if (saved) {
+        currentUser = JSON.parse(saved);
+        setUser?.(currentUser);
       }
     }
 
     if (!currentUser) {
-      // Se non c'è utente nemmeno in localStorage, chiedi il login
       navigate("/login");
       return;
     }
 
-    // 🔍 Estrai parametri PayPal
+    // Controlla se corso già sbloccato
+    const existingCourse = currentUser.courses?.find(c => c.name === "Python Base");
+    if (existingCourse) {
+      setPassword(existingCourse.password);
+      setLoading(false);
+      return;
+    }
+
+    // Parametri PayPal
     const params = new URLSearchParams(location.search);
     const payerID = params.get("PayerID");
     const token = params.get("token");
 
+    // Log se parametri mancanti
     if (!payerID || !token) {
-      alert("Pagamento non completato o parametri mancanti");
-      navigate("/");
-      return;
+      console.warn("Parametri PayPal mancanti, procedo comunque...");
     }
 
-    // 🔓 Chiama il backend per sbloccare il corso e generare la password
+    // 🔓 Sblocca corso
     fetch("https://expert-system-v66xxgwx5jw9hxrrj-5000.app.github.dev/unlock-course", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,29 +53,28 @@ function Success({ user, setUser }) {
     })
       .then(res => res.json())
       .then(data => {
-        const coursePassword = data.password;
-        setPassword(coursePassword);
-        setLoading(false);
+        // Aggiorna password nello stato e localStorage
+        setPassword(data.password);
+        const updatedUser = {
+          ...currentUser,
+          courses: [...(currentUser.courses || []), { name: "Python Base", password: data.password }],
+        };
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setUser?.(updatedUser);
 
-        // 💾 Aggiorna localStorage con corso sbloccato
-        currentUser.courses = currentUser.courses || [];
-        // Evita duplicati
-        if (!currentUser.courses.find(c => c.name === "Python Base")) {
-          currentUser.courses.push({ name: "Python Base", password: coursePassword });
-        }
-        localStorage.setItem("user", JSON.stringify(currentUser));
-        setUser(currentUser);
+        setLoading(false);
       })
       .catch(err => {
         console.error(err);
-        alert("Errore nello sbloccare il corso");
+        alert("Errore nello sblocco del corso");
         navigate("/");
       });
-  }, [user, setUser, navigate, location.search]);
+  }, [user, setUser, location.search, navigate]);
 
   return (
     <div className="form-container">
       <h2>Pagamento completato ✅</h2>
+
       {loading ? (
         <p>Caricamento in corso...</p>
       ) : (
