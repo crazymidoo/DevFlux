@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
   color: #111111;
   scroll-behavior: smooth;
@@ -11,8 +11,6 @@ html, body {
 #root {
   min-height: 100%;
 }
-
-/* HEADER */
 
 header {
   position: fixed;
@@ -132,8 +130,6 @@ header nav button:hover {
   background-color: #e0e0e0;
 }
 
-/* SEZIONI */
-
 .home-container {
   max-width: 1200px;
   margin: 0 auto 6rem;
@@ -149,8 +145,6 @@ header nav button:hover {
 .home-container > p {
   color: #444444;
 }
-
-/* CORSI */
 
 .courses-list {
   margin-top: 3rem;
@@ -194,8 +188,6 @@ header nav button:hover {
 .link-to-course:hover {
   color: #444444;
 }
-
-/* FORM */
 
 .form-container {
   max-width: 400px;
@@ -248,11 +240,10 @@ header nav button:hover {
   margin-bottom: 1rem;
 }
 
-/* CONTATTI */
-
 #contact {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
+  flex-wrap: wrap;
   align-items: flex-start;
 }
 
@@ -264,42 +255,67 @@ header nav button:hover {
 .contact-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem; 
+  gap: 1.5rem; 
 }
 
+/* CONTATTI AGGIORNATI PIÙ COMPATTI */
 .contact-card {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   background-color: #ececec;
   border: 1px solid #cccccc;
-  border-radius: 14px;
-  padding: 1rem 1.25rem;
-  width: 260px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  padding: 0.5rem 0.8rem;
+  width: 200px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .contact-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.contact-card svg {
-  width: 20px;
-  height: 20px;
-  fill: #222222;
-  flex-shrink: 0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .contact-card span {
-  color: #222222;
-  text-decoration: underline;
+  font-size: 0.85rem;
   font-weight: 500;
+  color: #222222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .contact-card span:hover {
   color: #444444;
+}
+
+.contact-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro-text {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 14px;
+  line-height: 1.8;
+  color: #333333;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  animation: fadeInUp 0.8s ease forwards;
 }

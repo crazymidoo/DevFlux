@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+const BASE_URL = "https://vigilant-tribble-699jjrwjpxv52rgr6-5000.app.github.dev/";
 
 function Success({ user, setUser }) {
   const navigate = useNavigate();
-  const location = useLocation();
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let currentUser = user;
-
     if (!currentUser) {
       const saved = localStorage.getItem("user");
       if (saved) {
@@ -30,23 +30,17 @@ function Success({ user, setUser }) {
       return;
     }
 
-    const params = new URLSearchParams(location.search);
-    const payerID = params.get("PayerID");
-    const token = params.get("token");
-
-    if (!payerID || !token) {
-      console.warn("Parametri PayPal mancanti, procedo comunque...");
-    }
-
-    fetch("https://expert-system-v66xxgwx5jw9hxrrj-5000.app.github.dev/unlock-course", {
+    fetch(`${BASE_URL}/unlock-course`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: currentUser.email,
-        course: "Python Base",
-      }),
+      body: JSON.stringify({ email: currentUser.email, course: "Python Base" }),
     })
-      .then(res => res.json())
+      .then(async res => {
+        const text = await res.text();
+        const data = text ? JSON.parse(text) : {};
+        if (!res.ok) throw new Error(data.msg || "Errore nello sblocco del corso");
+        return data;
+      })
       .then(data => {
         setPassword(data.password);
         const updatedUser = {
@@ -55,31 +49,22 @@ function Success({ user, setUser }) {
         };
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setUser?.(updatedUser);
-
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
-        alert("Errore nello sblocco del corso");
+        alert(err.message || "Errore nello sblocco del corso");
         navigate("/");
       });
-  }, [user, setUser, location.search, navigate]);
+  }, [user, setUser, navigate]);
 
   return (
     <div className="form-container">
       <h2>Pagamento completato!</h2>
-
-      {loading ? (
-        <p>Caricamento in corso...</p>
-      ) : (
+      {loading ? <p>Caricamento in corso...</p> : (
         <>
           <p>Il corso è stato sbloccato!</p>
-          <p>
-            Password del corso: <strong>{password}</strong>
-          </p>
-          <button className="form-button" onClick={() => navigate("/course")}>
-            Vai al corso
-          </button>
+          <p>Password del corso: <strong>{password}</strong></p>
+          <button className="form-button" onClick={() => navigate("/course")}>Vai al corso</button>
         </>
       )}
     </div>

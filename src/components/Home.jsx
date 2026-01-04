@@ -3,13 +3,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-function Home({ user }) {
+function Home({ user, setUser }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
-    navigate("/");
-    setOpen(false);
+    setUser(null);       // rimuove l'utente
+    localStorage.removeItem("user"); // opzionale: rimuove anche dal localStorage
+    setOpen(false);      // chiude il dropdown
+    navigate("/");       // torna alla home
   };
 
   const courses = [
@@ -47,16 +49,32 @@ function Home({ user }) {
 
       <div className="home-container" id="home">
         <h1>Benvenuto su DevFlux</h1>
-        <p>Scopri i nostri corsi di programmazione e inizia a imparare subito!</p>
+        <div className="intro-text">
+          <p>
+            Entra in un mondo dove i tuoi progetti diventano realtà: scopri DevFlux: una piattaforma dove imparare a programmare non significa solo studiare, ma creare, sperimentare e crescere ogni giorno!
+          </p>
+          <p>
+            Qui non ci sono lezioni noiose e teoriche senza senso. Ogni corso è come un viaggio guidato: affronti sfide reali, scrivi codice che funziona davvero e costruisci progetti che puoi mostrare con orgoglio.
+          </p>
+          <p>
+            DevFlux è per chi vuole sperimentare e capire davvero come funzionano le cose. Ti guideremo, ma sarai tu a fare la differenza: scrivi, prova, impara e cresci con ogni sfida.
+          </p>
+          <p>
+            E non sarai mai solo: la community di DevFlux è fatta di curiosi, sviluppatori e appassionati come te. Qui puoi confrontarti, ricevere feedback e imparare da chi, come te, sta costruendo il suo percorso di crescita.
+          </p>
+          <p>
+            Non importa da dove parti: se sei un principiante che scrive il suo primo “Hello World” o uno sviluppatore che vuole portare i suoi progetti al livello successivo, troverai corsi pensati per te, strumenti aggiornati e la motivazione giusta per non fermarti mai!
+          </p>
+          <p>
+            In DevFlux metti le tue idee in azione: sperimenti, crei e cresci ad ogni progetto. Ogni riga di codice è un passo verso risultati concreti e soddisfazioni reali.
+          </p>
+        </div>
       </div>
 
       <section className="home-container" id="about">
         <h2>Chi siamo</h2>
         <p>
-          DevFlux è una piattaforma dedicata all'apprendimento della
-          programmazione. Offriamo corsi pratici e teorici con materiale aggiornato,
-          esercizi guidati e supporto agli studenti. Impara da zero o migliora le tue
-          competenze con noi!
+          DevFlux è una piattaforma dedicata all'apprendimento della programmazione. Offriamo corsi pratici e teorici con materiale aggiornato, esercizi guidati e supporto agli studenti. Impara da zero o migliora le tue competenze con noi!
         </p>
       </section>
 
