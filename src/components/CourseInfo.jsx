@@ -13,7 +13,14 @@ function CourseInfo() {
       price: "49€",
       description:
         "Corso completo per imparare Python da zero. Include lezioni teoriche, esercizi pratici e un progetto finale per consolidare le competenze.",
-      paypalLink: "https://paypal.me/ahmedmousta/49",
+      paypalLink: "https://www.sandbox.paypal.com/cgi-bin/webscr?" +
+                  "cmd=_xclick" +
+                  "&business=sb-62kco48523149@business.example.com" +
+                  "&item_name=Corso+Python+Base" +
+                  "&amount=49.00" +
+                  "&currency_code=EUR" +
+                  "&return=https://expert-system-v66xxgwx5jw9hxrrj-5173.app.github.dev/success" +
+                  "&cancel_return=https://expert-system-v66xxgwx5jw9hxrrj-5173.app.github.dev/",
       details: [
         "Lezioni video passo-passo",
         "Esercizi pratici per ogni argomento",
@@ -38,8 +45,9 @@ function CourseInfo() {
   }
 
   const handlePayPal = () => {
-    window.open(course.paypalLink, "_blank");
-  };
+  window.location.href = course.paypalLink;
+};
+
 
   return (
     <div className="form-container">

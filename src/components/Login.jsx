@@ -19,10 +19,22 @@ function Login({ setUser }) {
           body: JSON.stringify({ email, password }),
         }
       );
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg);
 
-      setUser({ email, courses: data.courses });
+      // 🔐 utente loggato
+      const loggedUser = {
+        email,
+        courses: data.courses || [],
+      };
+
+      // ✅ SALVA IN LOCALSTORAGE (FONDAMENTALE PER PAYPAL)
+      localStorage.setItem("user", JSON.stringify(loggedUser));
+
+      // ✅ SALVA IN STATO REACT
+      setUser(loggedUser);
+
       navigate("/");
     } catch (err) {
       setMsg(err.message);
@@ -31,8 +43,12 @@ function Login({ setUser }) {
 
   return (
     <div className="form-container">
-      <button className="back-button" onClick={() => navigate(-1)}>↩ Indietro</button>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ↩ Indietro
+      </button>
+
       <h2>Login</h2>
+
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -41,6 +57,7 @@ function Login({ setUser }) {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Password"
@@ -48,9 +65,13 @@ function Login({ setUser }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit" className="form-button">Accedi</button>
+
+        <button type="submit" className="form-button">
+          Accedi
+        </button>
       </form>
-      {msg && <p>{msg}</p>}
+
+      {msg && <p style={{ color: "red" }}>{msg}</p>}
     </div>
   );
 }

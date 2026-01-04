@@ -1,21 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Course({ user }) {
   const [password, setPassword] = useState("");
   const [accessGranted, setAccessGranted] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
+
+  // 🔑 ripristina user da localStorage
+  useEffect(() => {
+    if (user) {
+      setCurrentUser(user);
+    } else {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setCurrentUser(JSON.parse(storedUser));
+      }
+    }
+  }, [user]);
+
+  // ⏳ ancora in caricamento
+  if (currentUser === null) {
+    return (
+      <div className="form-container">
+        <p>Caricamento...</p>
+      </div>
+    );
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!user || !user.courses) {
-      alert("Utente non loggato o corso non sbloccato!");
-      navigate("/login");
+
+    if (!currentUser.courses || currentUser.courses.length === 0) {
+      alert("Corso non sbloccato");
       return;
     }
 
-    const courseData = user.courses.find(c => c.name === "Python Base");
+    const courseData = currentUser.courses.find(
+      (c) => c.name === "Python Base"
+    );
+
     if (courseData && password === courseData.password) {
       setAccessGranted(true);
     } else {
@@ -32,13 +57,15 @@ function Course({ user }) {
       {!accessGranted ? (
         <>
           <h2>Accesso al Corso Python Base</h2>
-          <p>Inserisci la password che hai ricevuto dopo il pagamento:</p>
+          <p>Inserisci la password ricevuta dopo il pagamento:</p>
+
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
+              required
             />
             <button type="submit" className="form-button">
               Accedi
@@ -48,11 +75,11 @@ function Course({ user }) {
       ) : (
         <>
           <h2>Corso Python Base</h2>
-          <p>Benvenuto! Qui troverai tutte le lezioni, esercizi e materiali del corso.</p>
+          <p>Benvenuto! Qui trovi il contenuto del corso.</p>
           <ul>
             <li>Lezione 1: Introduzione a Python</li>
-            <li>Lezione 2: Variabili e tipi di dati</li>
-            <li>Lezione 3: Cicli e condizionali</li>
+            <li>Lezione 2: Variabili</li>
+            <li>Lezione 3: Cicli</li>
             <li>Lezione 4: Funzioni</li>
             <li>Lezione 5: Progetto finale</li>
           </ul>

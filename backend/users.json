@@ -4,6 +4,11 @@
       "email": "abc@gmail.com",
       "password": "password",
       "courses": []
+    },
+    {
+      "email": "test@devflux.it",
+      "password": "test123",
+      "courses": []
     }
   ]
 }
