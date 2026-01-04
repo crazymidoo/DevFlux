@@ -4,6 +4,8 @@ import Home from "./components/Home.jsx";
 import Course from "./components/Course.jsx";
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
+import CourseInfo from "./components/CourseInfo";
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -14,6 +16,8 @@ function App() {
       <Route path="/course" element={<Course user={user} setUser={setUser} />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login setUser={setUser} />} />
+      <Route path="/course-info/:id" element={<CourseInfo />} />
+
     </Routes>
   );
 }

@@ -12,6 +12,8 @@ html, body {
   min-height: 100%;
 }
 
+/* HEADER */
+
 header {
   position: fixed;
   top: 0;
@@ -29,10 +31,6 @@ header {
 header .logo {
   font-size: 1.7rem;
   font-weight: 800;
-  color: #222222;
-  background: linear-gradient(90deg, #222222, #555555);
-  background-clip: text;
-  -webkit-background-clip: text;
   color: #222222;
   letter-spacing: 1px;
 }
@@ -104,10 +102,14 @@ header nav button:hover {
   cursor: pointer;
 }
 
+.user-menu {
+  position: relative;
+}
+
 .user-menu .dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 120%;
+  right: 0;
   background-color: #f2f2f2;
   border-radius: 6px;
   padding: 0.5rem 0;
@@ -124,12 +126,13 @@ header nav button:hover {
   font-weight: 500;
   cursor: pointer;
   text-align: left;
-  width: auto;
 }
 
 .dropdown button:hover {
   background-color: #e0e0e0;
 }
+
+/* SEZIONI */
 
 .home-container {
   max-width: 1200px;
@@ -138,14 +141,16 @@ header nav button:hover {
   background-color: #ffffff;
 }
 
-.home-container h1 {
+.home-container h1,
+.home-container h2 {
   margin-bottom: 0.5rem;
-  color: #111111;
 }
 
 .home-container > p {
   color: #444444;
 }
+
+/* CORSI */
 
 .courses-list {
   margin-top: 3rem;
@@ -169,144 +174,13 @@ header nav button:hover {
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.course-card h2 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
 .course-card p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #333333;
-}
-
-.buy-button {
-  background-color: #222222;
-  color: #ffffff;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.buy-button:hover {
-  background-color: #444444;
 }
 
 .access-link {
   margin-top: 1rem;
-}
-
-.access-link a {
-  color: #222222;
-  text-decoration: underline;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.access-link a:hover {
-  color: #444444;
-}
-
-.form-container {
-  max-width: 400px;
-  margin: 120px auto;
-  padding: 2rem 3rem 2rem 4rem;
-  background-color: #f7f7f7;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  color: #111111;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.form-container h2 {
-  margin-bottom: 1.5rem;
-  color: #111;
-  text-align: center;
-}
-
-.form-container input {
-  width: 100%;
-  max-width: 350px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #cccccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: #ffffff;
-  color: #111111;
-  box-sizing: border-box;
-}
-
-.form-container input::placeholder {
-  color: #999999;
-}
-
-.form-button {
-  width: 100%;
-  max-width: 350px;
-  margin-top: 0.5rem;
-  background-color: #222222;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.form-button:hover {
-  background-color: #444444;
-}
-
-.back-button {
-  align-self: flex-start;
-  margin-bottom: 1.5rem;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #222222;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.back-button:hover {
-  color: #444444;
-}
-
-
-.back-button {
-  align-self: flex-start;
-  margin-bottom: 1.5rem;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #222222;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.back-button:hover {
-  color: #444444;
-}
-
-.course-container input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #cccccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: #ffffff;
-  color: #111111;
-  box-sizing: border-box;
-  margin-bottom: 1rem;
 }
 
 .link-to-course {
@@ -321,7 +195,104 @@ header nav button:hover {
   color: #444444;
 }
 
-.contact-item {
+/* FORM */
+
+.form-container {
+  max-width: 400px;
+  margin: 120px auto;
+  padding: 2rem 3rem 2rem 4rem;
+  background-color: #f7f7f7;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-button {
+  width: 100%;
+  margin-top: 0.5rem;
+  background-color: #222222;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background-color: #444444;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222222;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+/* CONTATTI */
+
+#contact {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.contact-text {
+  max-width: 400px;
+  color: #444444;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* più distanza tra i contatti */
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #ececec;
+  border: 1px solid #cccccc;
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  width: 260px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.contact-card svg {
+  width: 20px;
+  height: 20px;
+  fill: #222222;
+  flex-shrink: 0;
+}
+
+.contact-card span {
   color: #222222;
   text-decoration: underline;
   font-weight: 500;
@@ -329,13 +300,6 @@ header nav button:hover {
   transition: color 0.3s ease;
 }
 
-.contact-item:hover {
+.contact-card span:hover {
   color: #444444;
-}
-
-.contact-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 0.5rem;
-  vertical-align: middle;
 }
