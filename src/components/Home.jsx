@@ -1,22 +1,19 @@
+// src/components/Home.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-function Home({ user, setUser }) {
+function Home({ user }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
-    setUser(null);
+    navigate("/");
     setOpen(false);
   };
 
   const courses = [
-    {
-      id: 1,
-      title: "Corso Python Base",
-      link: "/course",
-    }
+    { id: 1, title: "Corso Python Base", link: "/course" }
   ];
 
   return (
@@ -55,7 +52,12 @@ function Home({ user, setUser }) {
 
       <section className="home-container" id="about">
         <h2>Chi siamo</h2>
-        <p>Testo della sezione Chi siamo...</p>
+        <p>
+          DevFlux è una piattaforma dedicata all'apprendimento della
+          programmazione. Offriamo corsi pratici e teorici con materiale aggiornato,
+          esercizi guidati e supporto agli studenti. Impara da zero o migliora le tue
+          competenze con noi!
+        </p>
       </section>
 
       <section className="home-container" id="corsi">

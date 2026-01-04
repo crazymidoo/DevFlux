@@ -15,6 +15,16 @@ if (!fs.existsSync(dbPath)) fs.writeFileSync(dbPath, JSON.stringify({ users: [] 
 const readDB = () => JSON.parse(fs.readFileSync(dbPath));
 const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
 
+// Funzione per generare password casuale
+function generatePassword(length = 10) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return password;
+}
+
 // =====================
 // Rotte del backend
 // =====================
@@ -41,20 +51,24 @@ app.post("/login", (req, res) => {
   res.json({ msg: "Login ok", courses: user.courses });
 });
 
-
+// Sblocca corso e genera password
 app.post("/unlock-course", (req, res) => {
   const { email, course } = req.body;
   const db = readDB();
   const user = db.users.find(u => u.email === email);
   if (!user) return res.status(400).json({ msg: "Utente non trovato" });
 
-  if (!user.courses.includes(course)) user.courses.push(course);
+  const coursePassword = generatePassword(10);
+
+  if (!user.courses) user.courses = [];
+  user.courses.push({ name: course, password: coursePassword });
   writeDB(db);
 
-  res.json({ msg: `Corso ${course} sbloccato` });
+  res.json({ msg: `Corso ${course} sbloccato`, password: coursePassword });
 });
 
 // Test server
 app.get("/", (req, res) => res.send("Backend funzionante ✅"));
 
+// Avvio server
 app.listen(PORT, () => console.log(`Server backend avviato su http://localhost:${PORT}`));
