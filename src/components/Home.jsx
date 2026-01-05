@@ -21,31 +21,65 @@ function Home({ user, setUser }) {
   return (
     <>
       <header>
-        <span className="logo">DevFlux</span>
-        <nav>
-          <a href="#home">Home</a>
-          <a href="#about">Chi siamo</a>
-          <a href="#corsi">Corsi</a>
-          <a href="#contact">Contatti</a>
-          {user ? (
-            <div className="user-menu">
-              <button className="user-email" onClick={() => setOpen(!open)}>
-                {user.email}
-              </button>
-              {open && (
-                <div className="dropdown">
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="nav-buttons">
-              <button onClick={() => navigate("/register")}>Registrati</button>
-              <button onClick={() => navigate("/login")}>Accedi</button>
-            </div>
-          )}
-        </nav>
-      </header>
+  <span className="logo">DevFlux</span>
+  <nav>
+    <a
+      href="#home"
+      onClick={(e) => {
+        e.preventDefault();
+        document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+      }}
+    >
+      Home
+    </a>
+    <a
+      href="#about"
+      onClick={(e) => {
+        e.preventDefault();
+        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+      }}
+    >
+      Chi siamo
+    </a>
+    <a
+      href="#corsi"
+      onClick={(e) => {
+        e.preventDefault();
+        document.getElementById("corsi")?.scrollIntoView({ behavior: "smooth" });
+      }}
+    >
+      Corsi
+    </a>
+    <a
+      href="#contact"
+      onClick={(e) => {
+        e.preventDefault();
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      }}
+    >
+      Contatti
+    </a>
+
+    {user ? (
+      <div className="user-menu">
+        <button className="user-email" onClick={() => setOpen(!open)}>
+          {user.email}
+        </button>
+        {open && (
+          <div className="dropdown">
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
+      </div>
+    ) : (
+      <div className="nav-buttons">
+        <button onClick={() => navigate("/register")}>Registrati</button>
+        <button onClick={() => navigate("/login")}>Accedi</button>
+      </div>
+    )}
+  </nav>
+</header>
+
 
       <div className="home-container" id="home">
         <h1>Benvenuto su DevFlux</h1>
