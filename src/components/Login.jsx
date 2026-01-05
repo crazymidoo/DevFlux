@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-// → Assicurati che questo punti al tuo backend, senza slash finale
 const BASE_URL = "https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5000.app.github.dev";
 
 function Login({ setUser }) {

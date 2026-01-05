@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5000.app.github.dev/";
+const BASE_URL = "https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5000.app.github.dev";
 
 function Success({ user, setUser }) {
   const navigate = useNavigate();
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
