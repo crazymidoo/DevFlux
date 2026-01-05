@@ -19,10 +19,18 @@ function Course({ user }) {
     }
   }, [user]);
 
+  // Se utente non loggato, mostra messaggio chiaro
   if (currentUser === null) {
     return (
       <div className="form-container">
-        <p>Caricamento...</p>
+        <h2>Accesso al corso</h2>
+        <p>Devi effettuare il login per poter accedere al corso.</p>
+        <button className="form-button" onClick={() => navigate("/login")}>
+          Vai al login
+        </button>
+        <button className="back-button" onClick={() => navigate(-1)}>
+          ↩ Indietro
+        </button>
       </div>
     );
   }
@@ -31,7 +39,7 @@ function Course({ user }) {
     e.preventDefault();
 
     if (!currentUser.courses || currentUser.courses.length === 0) {
-      alert("Corso non sbloccato");
+      alert("Corso non sbloccato. Completa il pagamento per ottenere la password.");
       return;
     }
 

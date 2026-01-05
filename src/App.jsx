@@ -23,7 +23,7 @@ function App() {
       <Route path="/course" element={<Course user={user} />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login setUser={setUser} />} />
-      <Route path="/course-info/:id" element={<CourseInfo />} />
+      <Route path="/course-info/:id" element={<CourseInfo user={user} />} />
       <Route path="/success" element={<Success user={user} setUser={setUser} />} />
     </Routes>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../App.css";
 
-function CourseInfo() {
+function CourseInfo({ user }) {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -19,9 +19,8 @@ function CourseInfo() {
         "&item_name=Corso+Python+Base" +
         "&amount=49.00" +
         "&currency_code=EUR" +
-        // **HashRouter redirect corretto**: usa #/success
-        "&return=https://laughing-barnacle-q77ww96wx49q24pg4-5173.app.github.dev/#/success" +
-        "&cancel_return=https://laughing-barnacle-q77ww96wx49q24pg4-5173.app.github.dev/#/",
+        "&return=https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5173.app.github.dev/#/success" +
+        "&cancel_return=https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5173.app.github.dev/#/",
       details: [
         "Lezioni video passo-passo",
         "Esercizi pratici per ogni argomento",
@@ -46,7 +45,6 @@ function CourseInfo() {
   }
 
   const handlePayPal = () => {
-    // apre PayPal in una nuova scheda (opzionale)
     window.open(course.paypalLink, "_blank");
   };
 
@@ -65,9 +63,23 @@ function CourseInfo() {
         <strong>Prezzo:</strong> {course.price}
       </p>
 
-      <button className="form-button" onClick={handlePayPal}>
-        Paga con PayPal
-      </button>
+      {user ? (
+        <button className="form-button" onClick={handlePayPal}>
+          Paga con PayPal
+        </button>
+      ) : (
+        <div>
+          <p style={{ color: "red", marginBottom: "1rem" }}>
+            Devi registrarti o fare login prima di acquistare il corso.
+          </p>
+          <button
+            className="form-button"
+            onClick={() => navigate("/login")}
+          >
+            Vai al Login / Registrazione
+          </button>
+        </div>
+      )}
 
       <button className="back-button" onClick={() => navigate(-1)}>
         ↩ Indietro
