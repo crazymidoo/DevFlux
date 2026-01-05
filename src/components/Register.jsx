@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const BASE_URL = "https://laughing-barnacle-q77ww96wx49q24pg4-5000.app.github.dev";
+// → Assicurati che questo punti al tuo backend, senza slash finale
+const BASE_URL = "https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5000.app.github.dev";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch(`${BASE_URL}/register`, {
         method: "POST",
@@ -19,8 +21,14 @@ function Register() {
         body: JSON.stringify({ email, password }),
       });
 
+      // Leggiamo il testo e facciamo parse solo se è JSON
       const text = await res.text();
-      const data = text ? JSON.parse(text) : {};
+      let data;
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error("Errore: il backend non ha risposto con JSON");
+      }
 
       if (!res.ok) throw new Error(data.msg || "Errore nella registrazione");
 
@@ -32,14 +40,33 @@ function Register() {
 
   return (
     <div className="form-container">
-      <button className="back-button" onClick={() => navigate(-1)}>↩ Indietro</button>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ↩ Indietro
+      </button>
+
       <h2>Registrazione</h2>
+
       <form onSubmit={handleRegister}>
-        <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-        <button type="submit" className="form-button">Registrati</button>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit" className="form-button">
+          Registrati
+        </button>
       </form>
-      {msg && <p>{msg}</p>}
+
+      {msg && <p style={{ color: msg.includes("Errore") ? "red" : "green" }}>{msg}</p>}
     </div>
   );
 }

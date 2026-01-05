@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const BASE_URL = "https://laughing-barnacle-q77ww96wx49q24pg4-5000.app.github.dev";
+// → Assicurati che questo punti al tuo backend, senza slash finale
+const BASE_URL = "https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5000.app.github.dev";
 
 function Login({ setUser }) {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ function Login({ setUser }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch(`${BASE_URL}/login`, {
         method: "POST",
@@ -19,15 +21,22 @@ function Login({ setUser }) {
         body: JSON.stringify({ email, password }),
       });
 
+      // Leggiamo il testo e poi facciamo parse solo se è JSON
       const text = await res.text();
-      const data = text ? JSON.parse(text) : {};
+      let data;
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error("Errore: il backend non ha risposto con JSON");
+      }
 
       if (!res.ok) throw new Error(data.msg || "Errore nel login");
 
       const loggedUser = { email, courses: data.courses || [] };
       localStorage.setItem("user", JSON.stringify(loggedUser));
       setUser(loggedUser);
-      navigate("/");
+
+      navigate("/"); // login ok, torna alla home
     } catch (err) {
       setMsg(err.message);
     }
@@ -35,13 +44,32 @@ function Login({ setUser }) {
 
   return (
     <div className="form-container">
-      <button className="back-button" onClick={() => navigate(-1)}>↩ Indietro</button>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ↩ Indietro
+      </button>
+
       <h2>Login</h2>
+
       <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-        <button type="submit" className="form-button">Accedi</button>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit" className="form-button">
+          Accedi
+        </button>
       </form>
+
       {msg && <p style={{ color: "red" }}>{msg}</p>}
     </div>
   );

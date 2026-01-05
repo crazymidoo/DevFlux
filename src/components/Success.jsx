@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://laughing-barnacle-q77ww96wx49q24pg4-5000.app.github.dev";
+const BASE_URL = "https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5000.app.github.dev/";
 
 function Success({ user, setUser }) {
   const navigate = useNavigate();
@@ -11,7 +11,6 @@ function Success({ user, setUser }) {
   useEffect(() => {
     let currentUser = user;
 
-    // Recupera utente dal localStorage se non è passato come prop
     if (!currentUser) {
       const saved = localStorage.getItem("user");
       if (saved) {

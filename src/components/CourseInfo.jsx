@@ -19,6 +19,7 @@ function CourseInfo() {
         "&item_name=Corso+Python+Base" +
         "&amount=49.00" +
         "&currency_code=EUR" +
+        // **HashRouter redirect corretto**: usa #/success
         "&return=https://laughing-barnacle-q77ww96wx49q24pg4-5173.app.github.dev/#/success" +
         "&cancel_return=https://laughing-barnacle-q77ww96wx49q24pg4-5173.app.github.dev/#/",
       details: [
@@ -45,7 +46,8 @@ function CourseInfo() {
   }
 
   const handlePayPal = () => {
-    window.location.href = course.paypalLink;
+    // apre PayPal in una nuova scheda (opzionale)
+    window.open(course.paypalLink, "_blank");
   };
 
   return (
