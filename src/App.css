@@ -319,3 +319,26 @@ header nav button:hover {
   box-shadow: 0 8px 20px rgba(0,0,0,0.05);
   animation: fadeInUp 0.8s ease forwards;
 }
+
+.contacts-section h2 {
+  color: #111111; /* titolo nero */
+  margin-bottom: 1rem;
+}
+
+.contacts-section .intro-text {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 14px;
+  line-height: 1.8;
+  color: #333333;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+.contacts-cards {
+  display: flex;
+  justify-content: flex-start; 
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1rem;
+}
