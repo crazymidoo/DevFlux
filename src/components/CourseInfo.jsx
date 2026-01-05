@@ -19,16 +19,16 @@ function CourseInfo() {
         "&item_name=Corso+Python+Base" +
         "&amount=49.00" +
         "&currency_code=EUR" +
-        "&return=https://expert-system-v66xxgwx5jw9hxrrj-5173.app.github.dev/#/success" + // <-- HASH
-        "&cancel_return=https://expert-system-v66xxgwx5jw9hxrrj-5173.app.github.dev/#/", // <-- HASH
+        "&return=https://laughing-barnacle-q77ww96wx49q24pg4-5173.app.github.dev/#/success" +
+        "&cancel_return=https://laughing-barnacle-q77ww96wx49q24pg4-5173.app.github.dev/#/",
       details: [
         "Lezioni video passo-passo",
         "Esercizi pratici per ogni argomento",
         "Progetto finale guidato",
         "Supporto via email per dubbi",
-        "Accesso illimitato al materiale"
-      ]
-    }
+        "Accesso illimitato al materiale",
+      ],
+    },
   };
 
   const course = courses[id];
@@ -37,7 +37,9 @@ function CourseInfo() {
     return (
       <div className="form-container">
         <h2>Corso non trovato</h2>
-        <button className="back-button" onClick={() => navigate(-1)}>↩ Indietro</button>
+        <button className="back-button" onClick={() => navigate(-1)}>
+          ↩ Indietro
+        </button>
       </div>
     );
   }
@@ -50,12 +52,24 @@ function CourseInfo() {
     <div className="form-container">
       <h2>{course.title}</h2>
       <p>{course.description}</p>
+
       <ul>
-        {course.details.map((item, index) => <li key={index}>{item}</li>)}
+        {course.details.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
       </ul>
-      <p><strong>Prezzo:</strong> {course.price}</p>
-      <button className="form-button" onClick={handlePayPal}>Paga con PayPal</button>
-      <button className="back-button" onClick={() => navigate(-1)}>↩ Indietro</button>
+
+      <p>
+        <strong>Prezzo:</strong> {course.price}
+      </p>
+
+      <button className="form-button" onClick={handlePayPal}>
+        Paga con PayPal
+      </button>
+
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ↩ Indietro
+      </button>
     </div>
   );
 }
