@@ -6,20 +6,23 @@ function CourseInfo() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const FRONTEND_URL = "https://expert-system-v66xxgwx5jw9hxrrj-5173.app.github.dev";
+
   const courses = {
     1: {
       title: "Corso Python Base",
-      price: "49€",
+      price: "49.00",
       description:
         "Corso completo per imparare Python da zero. Include lezioni teoriche, esercizi pratici e un progetto finale per consolidare le competenze.",
-      paypalLink: "https://www.sandbox.paypal.com/cgi-bin/webscr?" +
-                  "cmd=_xclick" +
-                  "&business=sb-62kco48523149@business.example.com" +
-                  "&item_name=Corso+Python+Base" +
-                  "&amount=49.00" +
-                  "&currency_code=EUR" +
-                  "&return=https://expert-system-v66xxgwx5jw9hxrrj-5173.app.github.dev/success" +
-                  "&cancel_return=https://expert-system-v66xxgwx5jw9hxrrj-5173.app.github.dev/",
+      paypalLink:
+        "https://www.sandbox.paypal.com/cgi-bin/webscr?" +
+        "cmd=_xclick" +
+        "&business=sb-62kco48523149@business.example.com" +
+        "&item_name=Corso+Python+Base" +
+        "&amount=49.00" +
+        "&currency_code=EUR" +
+        `&return=${FRONTEND_URL}/success` +
+        `&cancel_return=${FRONTEND_URL}/`,
       details: [
         "Lezioni video passo-passo",
         "Esercizi pratici per ogni argomento",
@@ -44,23 +47,26 @@ function CourseInfo() {
   }
 
   const handlePayPal = () => {
-  window.location.href = course.paypalLink;
-};
-
+    window.location.href = course.paypalLink;
+  };
 
   return (
     <div className="form-container">
       <h2>{course.title}</h2>
       <p>{course.description}</p>
+
       <ul>
         {course.details.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
-      <p>Prezzo: {course.price}</p>
+
+      <p>Prezzo: {course.price} €</p>
+
       <button className="form-button" onClick={handlePayPal}>
         Paga con PayPal
       </button>
+
       <button className="back-button" onClick={() => navigate(-1)}>
         ↩ Indietro
       </button>

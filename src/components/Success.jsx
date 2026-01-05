@@ -10,6 +10,8 @@ function Success({ user, setUser }) {
 
   useEffect(() => {
     let currentUser = user;
+
+    // Recupera utente dal localStorage se non è passato come prop
     if (!currentUser) {
       const saved = localStorage.getItem("user");
       if (saved) {
@@ -23,6 +25,7 @@ function Success({ user, setUser }) {
       return;
     }
 
+    // Controlla se l'utente ha già il corso sbloccato
     const existingCourse = currentUser.courses?.find(c => c.name === "Python Base");
     if (existingCourse) {
       setPassword(existingCourse.password);
@@ -30,6 +33,7 @@ function Success({ user, setUser }) {
       return;
     }
 
+    // Chiamata al backend per sbloccare il corso
     fetch(`${BASE_URL}/unlock-course`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -60,11 +64,17 @@ function Success({ user, setUser }) {
   return (
     <div className="form-container">
       <h2>Pagamento completato!</h2>
-      {loading ? <p>Caricamento in corso...</p> : (
+      {loading ? (
+        <p>Caricamento in corso...</p>
+      ) : (
         <>
           <p>Il corso è stato sbloccato!</p>
-          <p>Password del corso: <strong>{password}</strong></p>
-          <button className="form-button" onClick={() => navigate("/course")}>Vai al corso</button>
+          <p>
+            Password del corso: <strong>{password}</strong>
+          </p>
+          <button className="form-button" onClick={() => navigate("/course")}>
+            Vai al corso
+          </button>
         </>
       )}
     </div>
