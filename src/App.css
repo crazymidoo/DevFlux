@@ -132,10 +132,11 @@ header nav button:hover {
 
 .home-container {
   max-width: 1200px;
-  margin: 0 auto 6rem;
-  padding: 120px 2rem 3rem;
+  margin: 0 auto 1rem; 
+  padding: 60px 2rem 1.5rem; 
   background-color: #ffffff;
 }
+
 
 .home-container h1,
 .home-container h2 {

@@ -98,12 +98,24 @@ function Home({ user, setUser }) {
         </div>
       </div>
 
-      <section className="home-container" id="about">
-        <h2>Chi siamo</h2>
-        <p>
-          DevFlux è una piattaforma dedicata all'apprendimento della programmazione. Offriamo corsi pratici e teorici con materiale aggiornato, esercizi guidati e supporto agli studenti. Impara da zero o migliora le tue competenze con noi!
-        </p>
-      </section>
+<section className="home-container" id="about">
+  <h2>Chi siamo</h2>
+  <div className="intro-text">
+    <p>
+      DevFlux è una <strong>nuova startup tecnologica</strong> nata per rendere l’apprendimento della programmazione 
+      <strong>più semplice</strong>, <strong>pratico</strong> e <strong>concreto</strong>. 
+      L’idea alla base di DevFlux è affrontare le difficoltà che incontrano chi vuole imparare a programmare, 
+      offrendo <strong>strumenti chiari</strong>, <strong>percorsi guidati</strong> e <strong>contenuti sempre aggiornati</strong>, 
+      senza dispersione in concetti astratti o materiale obsoleto.
+    </p>
+    <p>
+      L’obiettivo è creare una piattaforma educativa che permetta di <strong>mettere subito le mani sul codice</strong>, 
+      acquisendo <strong>competenze digitali applicabili concretamente</strong> fin dai primi passi. 
+      DevFlux nasce per <strong>colmare il divario tra apprendimento teorico e utilizzo reale delle tecnologie più richieste</strong>, 
+      fornendo risorse pratiche e aggiornate per chi vuole crescere professionalmente nel mondo digitale.
+    </p>
+  </div>
+</section>
 
       <section className="home-container" id="corsi">
         <h2>Corsi disponibili</h2>
