@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://vigilant-tribble-699jjrwjpxv52rgr6-5000.app.github.dev/";
+const BASE_URL = "https://laughing-barnacle-q77ww96wx49q24pg4-5000.app.github.dev";
 
 function Success({ user, setUser }) {
   const navigate = useNavigate();
