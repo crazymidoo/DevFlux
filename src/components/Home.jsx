@@ -68,16 +68,27 @@ function Home({ user, setUser }) {
         </nav>
       </header>
 
-      <section className="home-container" id="home">
-        <h1>Benvenuto su DevFlux</h1>
-        <div className="intro-text">
-          <p>
-            Entra in un mondo dove imparare a programmare significa <strong>creare</strong>, <strong>sperimentare</strong> e <strong>crescere</strong> ogni giorno.
-          </p>
-          <p>
-            <strong>Percorsi essenziali</strong>, programmazione <strong>pratica e applicabile</strong> e <strong>strumenti moderni</strong> per crescere come sviluppatore.</p>
-        </div>
-      </section>
+<section className="home-container" id="home">
+  <h1>Benvenuto su DevFlux</h1>
+  <div className="intro-text">
+    <p>
+      Entra in un mondo dove imparare a programmare significa <strong>creare</strong>, <strong>sperimentare</strong> e <strong>crescere</strong> ogni giorno.
+    </p>
+    <p>
+      <strong>Percorsi essenziali</strong>, programmazione <strong>pratica e applicabile</strong> e <strong>strumenti moderni</strong> per crescere come sviluppatore.
+    </p>
+    <p>
+      Qui su DevFlux, non solo impari a scrivere codice: impari a <strong>pensare da sviluppatore</strong>. Ti guideremo passo dopo passo, offrendoti sfide stimolanti, progetti reali e una community pronta a supportarti. 
+    </p>
+    <p>
+      Che tu sia un principiante curioso o un developer esperto in cerca di aggiornamenti, troverai risorse, consigli e ispirazione per portare le tue competenze al livello successivo. 
+    </p>
+    <p>
+      Inizia il tuo viaggio oggi stesso e trasforma la tua passione per la programmazione in <strong>abilità concrete</strong>, <strong>progetti reali</strong> e <strong>successo professionale</strong>.
+    </p>
+  </div>
+</section>
+
 
       <section className="home-container" id="about">
         <h2>Chi siamo</h2>

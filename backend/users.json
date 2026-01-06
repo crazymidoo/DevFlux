@@ -19,6 +19,20 @@
       "email": "test@devflux.it",
       "password": "test123",
       "courses": []
+    },
+    {
+      "email": "123@gmail.com",
+      "password": "password",
+      "courses": [
+        {
+          "name": "Python Base",
+          "password": "&tk3NbLJo#"
+        },
+        {
+          "name": "Python Base",
+          "password": "wyPO5qS3qf"
+        }
+      ]
     }
   ]
 }

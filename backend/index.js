@@ -77,14 +77,13 @@ app.post("/unlock-course", (req, res) => {
     const user = db.users.find(u => u.email === email);
     if (!user) return res.status(400).json({ msg: "Utente non trovato" });
 
+    const coursePassword = generatePassword();
     if (!user.courses) user.courses = [];
-    if (!user.courses.some(c => c.name === course)) {
-      user.courses.push({ name: course });
-    }
+    user.courses.push({ name: course, password: coursePassword });
 
     writeDB(db);
 
-    res.json({ msg: `Corso ${course} sbloccato` });
+    res.json({ msg: `Corso ${course} sbloccato`, password: coursePassword });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Errore server" });
