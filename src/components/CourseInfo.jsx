@@ -11,7 +11,7 @@ function CourseInfo({ user }) {
       title: "Corso Python Base",
       price: "49.00€",
       description:
-        "Corso completo per imparare Python da zero. Include lezioni teoriche, esercizi pratici e un progetto finale per consolidare le competenze.",
+        "Corso completo per imparare Python da zero, pensato sia per chi è alle prime armi sia per chi vuole consolidare le basi in modo solido e concreto. Durante il percorso, non ti perderai in concetti astratti: ogni lezione è strutturata per portarti passo dopo passo verso la creazione di codice reale e funzionante.",
       paypalLink:
         "https://www.sandbox.paypal.com/cgi-bin/webscr?" +
         "cmd=_xclick" +
@@ -22,12 +22,22 @@ function CourseInfo({ user }) {
         "&return=https://refactored-robot-wrrww9xw4xrgc5pqq-5173.app.github.dev/success" +
         "&cancel_return=https://refactored-robot-wrrww9xw4xrgc5pqq-5173.app.github.dev/#",
       details: [
-        "Lezioni video passo-passo",
-        "Esercizi pratici per ogni argomento",
-        "Progetto finale guidato",
-        "Supporto via email per dubbi",
-        "Accesso illimitato al materiale",
+        "Lezioni passo-passo: spiegazioni chiare e guidate per ogni concetto, dal più semplice al più avanzato.",
+        "Esercizi pratici: ogni argomento è accompagnato da esercizi concreti per fissare ciò che impari.",
+        "Progetto finale guidato: costruirai un progetto completo e funzionante da mostrare.",
+        "Supporto via email e social per dubbi o domande.",
+        "Accesso illimitato al materiale per imparare al tuo ritmo.",
       ],
+      topics: [
+        "Introduzione a Python: cos'è, come installarlo e configurare l'ambiente.",
+        "Variabili e tipi di dati: numeri, stringhe, liste, tuple e dizionari.",
+        "Operatori e espressioni: aritmetici, logici, confronto e assegnazione.",
+        "Controllo di flusso: if, else, elif e cicli for/while.",
+        "Funzioni e modularità: come creare funzioni, parametri e ritorni.",
+        "Gestione degli errori: try, except e debugging base.",
+        "File e input/output: leggere e scrivere file, interazione con l'utente.",
+        "Progetto finale: costruzione di un’applicazione reale utilizzando tutto ciò che hai imparato."
+      ]
     },
   };
 
@@ -49,10 +59,19 @@ function CourseInfo({ user }) {
   };
 
   return (
-    <div className="form-container">
+    <div className="course-container">
       <h2>{course.title}</h2>
       <p>{course.description}</p>
 
+      {/* Nuova sezione: argomenti del corso */}
+      <h3>Argomenti trattati:</h3>
+      <ul>
+        {course.topics.map((topic, index) => (
+          <li key={index}>{topic}</li>
+        ))}
+      </ul>
+
+      <h3>Cosa imparerai e otterrai:</h3>
       <ul>
         {course.details.map((item, index) => (
           <li key={index}>{item}</li>
