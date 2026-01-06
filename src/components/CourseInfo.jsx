@@ -19,7 +19,16 @@ function CourseInfo({ user }) {
       price: "49.00€",
       description:
         "Corso completo per imparare Python da zero, pensato sia per chi è alle prime armi sia per chi vuole consolidare le basi in modo solido e concreto. Durante il percorso, non ti perderai in concetti astratti: ogni lezione è strutturata per portarti passo dopo passo verso la creazione di codice reale e funzionante.",
-      paypalLink: "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sb-62kco48523149@business.example.com&item_name=Corso+Python+Base&amount=49.00&currency_code=EUR&return=https://probable-journey-g44gg56gppx9fxxv-5174.app.github.dev/?success=true&cancel_return=https://probable-journey-g44gg56gppx9fxxv-5174.app.github.dev/&rm=1",
+      paypalLink:
+        "https://www.sandbox.paypal.com/cgi-bin/webscr?" +
+        "cmd=_xclick" +
+        "&business=sb-62kco48523149@business.example.com" +
+        "&item_name=Corso+Python+Base" +
+        "&amount=49.00" +
+        "&currency_code=EUR" +
+        "&return=" + window.location.origin + "/?success=true" +
+        "&cancel_return=" + window.location.origin + "/" +
+        "&rm=1",
       details: [
         "Lezioni passo-passo: spiegazioni chiare e guidate per ogni concetto, dal più semplice al più avanzato.",
         "Esercizi pratici: ogni argomento è accompagnato da esercizi concreti per fissare ciò che impari.",
