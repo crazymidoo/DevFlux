@@ -19,8 +19,8 @@ function CourseInfo({ user }) {
         "&item_name=Corso+Python+Base" +
         "&amount=49.00" +
         "&currency_code=EUR" +
-        "&return=https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5173.app.github.dev/success" +
-        "&cancel_return=https://psychic-palm-tree-r44jjrwjx5wvhwpp6-5173.app.github.dev/#",
+        "&return=https://refactored-robot-wrrww9xw4xrgc5pqq-5173.app.github.dev/success" +
+        "&cancel_return=https://refactored-robot-wrrww9xw4xrgc5pqq-5173.app.github.dev/#",
       details: [
         "Lezioni video passo-passo",
         "Esercizi pratici per ogni argomento",
