@@ -4,7 +4,15 @@
       "email": "abc@gmail.com",
       "password": "password",
       "courses": [
-        "Python Base"
+        "Python Base",
+        {
+          "name": "Python Base",
+          "password": "#Gdpd3@20X"
+        },
+        {
+          "name": "Python Base",
+          "password": "B3jTBYPnpT"
+        }
       ]
     },
     {

@@ -19,8 +19,9 @@ function CourseInfo({ user }) {
         "&item_name=Corso+Python+Base" +
         "&amount=49.00" +
         "&currency_code=EUR" +
-        "&return=https://refactored-robot-wrrww9xw4xrgc5pqq-5173.app.github.dev/success" +
-        "&cancel_return=https://refactored-robot-wrrww9xw4xrgc5pqq-5173.app.github.dev/#",
+        "&return=" + window.location.origin + "/?success=true" +
+        "&cancel_return=" + window.location.origin + "/" +
+        "&rm=1",
       details: [
         "Lezioni passo-passo: spiegazioni chiare e guidate per ogni concetto, dal più semplice al più avanzato.",
         "Esercizi pratici: ogni argomento è accompagnato da esercizi concreti per fissare ciò che impari.",
@@ -55,7 +56,8 @@ function CourseInfo({ user }) {
   }
 
   const handlePayPal = () => {
-    window.open(course.paypalLink, "_blank");
+    console.log("PayPal Link:", course.paypalLink);
+    window.open(course.paypalLink, "_self");
   };
 
   return (

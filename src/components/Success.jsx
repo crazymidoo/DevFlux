@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://refactored-robot-wrrww9xw4xrgc5pqq-5000.app.github.dev";
+const BASE_URL = window.location.origin.replace('-5174', '-5000');
 
 function Success({ user, setUser }) {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");  
   const [loading, setLoading] = useState(true);
 
+  console.log("Success component rendered");
+
   useEffect(() => {
+    console.log("Success useEffect, user:", user);
     let currentUser = user;
 
     if (!currentUser) {
@@ -20,6 +23,7 @@ function Success({ user, setUser }) {
     }
 
     if (!currentUser) {
+      console.log("No user, navigating to login");
       navigate("/login");
       return;
     }

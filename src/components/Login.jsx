@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const BASE_URL = "https://refactored-robot-wrrww9xw4xrgc5pqq-5000.app.github.dev";
+const BASE_URL = window.location.origin.replace('-5174', '-5000');
 
 function Login({ setUser }) {
   const [email, setEmail] = useState("");

@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Home({ user, setUser }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const successParam = urlParams.get('success');
+    console.log("Home useEffect, success param:", successParam);
+    if (successParam === 'true') {
+      console.log("Navigating to /success");
+      navigate('/success');
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
     setUser(null);
