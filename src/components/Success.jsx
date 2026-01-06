@@ -70,6 +70,9 @@ function Success({ user, setUser }) {
       <button className="form-button" onClick={() => navigate("/course")}>
         Vai al corso
       </button>
+      <p style={{ marginTop: '1rem', textAlign: 'center' }}>
+        Oppure torna alla <button style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer', textDecoration: 'underline', padding: 0 }} onClick={() => { console.log("Navigating to home"); window.location.href = window.location.origin + "/"; }}>Home</button>
+      </p>
     </div>
   );
 }
