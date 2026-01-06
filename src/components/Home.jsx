@@ -97,17 +97,26 @@ function Home({ user, setUser }) {
         <div className="courses-list">
           {courses.map(course => (
             <div key={course.id} className="course-card">
-              <h3>{course.title}</h3>
-              <p>
-                <span className="link-to-course" onClick={() => navigate(`/course-info/${course.id}`)}>
-                  Info corso e pagamento
-                </span>
-              </p>
-              <p>
-                <span className="link-to-course" onClick={() => navigate(course.link)}>
-                  Vai al corso
-                </span>
-              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/250px-Python-logo-notext.svg.png?20250701090410" 
+                  alt="Python Logo" 
+                  style={{ width: '100px', height: '100px', flexShrink: 0 }} 
+                />
+                <div>
+                  <h3>{course.title}</h3>
+                  <p>
+                    <span className="link-to-course" onClick={() => navigate(`/course-info/${course.id}`)}>
+                      Info corso e pagamento
+                    </span>
+                  </p>
+                  <p>
+                    <span className="link-to-course" onClick={() => navigate(course.link)}>
+                      Vai al corso
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

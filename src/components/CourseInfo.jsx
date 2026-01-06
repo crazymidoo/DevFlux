@@ -53,6 +53,8 @@ function CourseInfo({ user }) {
 
   console.log("course:", course);
 
+  const hasPurchased = user && user.courses && user.courses.some(c => c.name === "Python Base");
+
   if (!course) {
     return (
       <div className="form-container">
@@ -94,9 +96,15 @@ function CourseInfo({ user }) {
       </p>
 
       {user ? (
-        <button className="form-button" onClick={handlePayPal}>
-          Paga con PayPal
-        </button>
+        hasPurchased ? (
+          <button className="form-button" disabled style={{ opacity: 0.5 }}>
+            Corso già acquistato
+          </button>
+        ) : (
+          <button className="form-button" onClick={handlePayPal}>
+            Paga con PayPal
+          </button>
+        )
       ) : (
         <div>
           <p style={{ color: "red", marginBottom: "1rem" }}>
