@@ -33,7 +33,7 @@ function Home({ user, setUser }) {
               <button className="user-email" onClick={() => setOpen(!open)}>
                 {user.email}
               </button>
-              {open && (
+              {open && (   
                 <div className="dropdown">
                   <button onClick={handleLogout}>Logout</button>
                 </div>
@@ -55,8 +55,7 @@ function Home({ user, setUser }) {
             Entra in un mondo dove imparare a programmare significa <strong>creare</strong>, <strong>sperimentare</strong> e <strong>crescere</strong> ogni giorno.
           </p>
           <p>
-            Percorsi chiari, codice reale e strumenti aggiornati per sviluppare competenze concrete.
-          </p>
+            <strong>Percorsi essenziali</strong>, programmazione <strong>pratica e applicabile</strong> e <strong>strumenti moderni</strong> per crescere come sviluppatore.</p>
         </div>
       </section>
 
@@ -67,8 +66,8 @@ function Home({ user, setUser }) {
             DevFlux è una <strong>nuova startup tecnologica</strong> nata per rendere l’apprendimento della programmazione più diretto e accessibile.
           </p>
           <p>
-            L’idea nasce dalle difficoltà reali di chi studia sviluppo software senza riuscire a collegare teoria e pratica.
-            DevFlux esiste per fornire <strong>percorsi strutturati</strong>, <strong>contenuti aggiornati</strong> e un approccio concreto al codice.
+            L’idea nasce dalle difficoltà reali di chi studia programmazione senza riuscire a collegare teoria e pratica.
+            DevFlux esiste per fornire <strong>percorsi strutturati</strong> e <strong>contenuti aggiornati</strong> per mettere subito in pratica ciò che impari!
           </p>
         </div>
       </section>
@@ -95,19 +94,21 @@ function Home({ user, setUser }) {
       </section>
 
       <section className="home-container" id="why-us">
-        <h2>Perché DevFlux</h2>
-        <div className="intro-text">
-          <p>
-            DevFlux nasce come risposta a piattaforme dispersive, teoriche o poco aggiornate.
-          </p>
-          <p>
-            L’obiettivo è offrire un ambiente dove l’apprendimento sia <strong>progressivo</strong>, <strong>pratico</strong> e orientato all’utilizzo reale delle tecnologie.
-          </p>
-          <p>
-            Ogni percorso è pensato per fornire <strong>competenze applicabili</strong>, riducendo al minimo la distanza tra studio e utilizzo concreto.
-          </p>
-        </div>
-      </section>
+  <h2>Perché DevFlux</h2>
+  <div className="intro-text">
+    <p>
+      Con DevFlux impari <strong>ciò che conta davvero</strong>, <strong>senza perdere tempo</strong> in concetti inutili, vecchi o complicati.
+    </p>
+    <p>
+      Ci impegniamo a rendere il nostro sito <strong>chiaro e semplice da navigare</strong>, così da trovare subito ciò che ti serve. I percorsi sono <strong>chiari</strong>, <strong>semplici</strong> e <strong>adatti a chiunque</strong>, anche a chi non ha mai messo mani nel codice, con un <strong>approccio pratico</strong> e immediatamente <strong>applicabile</strong>.
+    </p>
+    <p>
+      Siamo sempre <strong>pronti ad ascoltarti</strong>, <strong>guidarti e supportarti</strong>, perché <strong>il tuo apprendimento è la nostra priorità!</strong>
+    </p>
+  </div>
+</section>
+
+
 
       <section className="home-container contacts-section" id="contact">
         <h2>Contatti</h2>
