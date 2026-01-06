@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../App.css";
 
@@ -6,22 +6,20 @@ function CourseInfo({ user }) {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  console.log("CourseInfo rendered, id:", id);
+
+  useEffect(() => {
+    // Scroll to bottom to show payment button
+    window.scrollTo(0, document.body.scrollHeight);
+  }, []);
+
   const courses = {
     1: {
       title: "Corso Python Base",
       price: "49.00€",
       description:
         "Corso completo per imparare Python da zero, pensato sia per chi è alle prime armi sia per chi vuole consolidare le basi in modo solido e concreto. Durante il percorso, non ti perderai in concetti astratti: ogni lezione è strutturata per portarti passo dopo passo verso la creazione di codice reale e funzionante.",
-      paypalLink:
-        "https://www.sandbox.paypal.com/cgi-bin/webscr?" +
-        "cmd=_xclick" +
-        "&business=sb-62kco48523149@business.example.com" +
-        "&item_name=Corso+Python+Base" +
-        "&amount=49.00" +
-        "&currency_code=EUR" +
-        "&return=" + window.location.origin + "/?success=true" +
-        "&cancel_return=" + window.location.origin + "/" +
-        "&rm=1",
+      paypalLink: "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sb-62kco48523149@business.example.com&item_name=Corso+Python+Base&amount=49.00&currency_code=EUR&return=https://probable-journey-g44gg56gppx9fxxv-5174.app.github.dev/?success=true&cancel_return=https://probable-journey-g44gg56gppx9fxxv-5174.app.github.dev/&rm=1",
       details: [
         "Lezioni passo-passo: spiegazioni chiare e guidate per ogni concetto, dal più semplice al più avanzato.",
         "Esercizi pratici: ogni argomento è accompagnato da esercizi concreti per fissare ciò che impari.",
@@ -42,7 +40,9 @@ function CourseInfo({ user }) {
     },
   };
 
-  const course = courses[id];
+  const course = courses[+id];
+
+  console.log("course:", course);
 
   if (!course) {
     return (

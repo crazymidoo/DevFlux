@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Home({ user, setUser }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const timeoutRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 200);
+  };
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -39,12 +49,12 @@ function Home({ user, setUser }) {
           <a href="#contact" onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}>Contatti</a>
 
           {user ? (
-            <div className="user-menu">
-              <button className="user-email" onClick={() => setOpen(!open)}>
+            <div className="user-menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <div className="user-email">
                 {user.email}
-              </button>
+              </div>
               {open && (   
-                <div className="dropdown">
+                <div className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   <button onClick={handleLogout}>Logout</button>
                 </div>
               )}
