@@ -76,7 +76,7 @@ function CourseInfo({ user }) {
       <h2>{course.title}</h2>
       <p>{course.description}</p>
 
-      {/* Nuova sezione: argomenti del corso */}
+      {/* Sezione argomenti del corso */}
       <h3>Argomenti trattati:</h3>
       <ul>
         {course.topics.map((topic, index) => (
@@ -95,6 +95,7 @@ function CourseInfo({ user }) {
         <strong>Prezzo:</strong> {course.price}
       </p>
 
+      {/* Sezione acquisto / login */}
       {user ? (
         hasPurchased ? (
           <button className="form-button" disabled style={{ opacity: 0.5 }}>
@@ -106,16 +107,27 @@ function CourseInfo({ user }) {
           </button>
         )
       ) : (
-        <div>
+        <div style={{ textAlign: "center", marginTop: "1rem" }}>
           <p style={{ color: "red", marginBottom: "1rem" }}>
             Devi registrarti o fare login prima di acquistare il corso.
           </p>
+
           <button
             className="form-button"
             onClick={() => navigate("/login")}
           >
-            Vai al Login / Registrazione
+            Accedi
           </button>
+
+          <p style={{ marginTop: "0.5rem" }}>
+            Oppure{" "}
+            <span
+              style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
+              onClick={() => navigate("/register")}
+            >
+              Registrati
+            </span>
+          </p>
         </div>
       )}
 
