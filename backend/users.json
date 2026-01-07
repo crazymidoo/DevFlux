@@ -33,6 +33,11 @@
           "password": "wyPO5qS3qf"
         }
       ]
+    },
+    {
+      "email": "prova@gmail.com",
+      "password": "password",
+      "courses": []
     }
   ]
 }

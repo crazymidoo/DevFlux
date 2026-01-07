@@ -17,12 +17,15 @@ function Login({ setUser }) {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
+
       if (!res.ok) throw new Error(data.msg || "Errore nel login");
 
       const user = { email, courses: data.courses || [] };
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
+
       navigate("/");
     } catch (err) {
       setMsg(err.message);

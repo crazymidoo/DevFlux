@@ -10,6 +10,7 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch("/register", {
         method: "POST",
@@ -17,11 +18,13 @@ function Register() {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
+
       if (!res.ok) throw new Error(data.msg || "Errore nella registrazione");
 
+      // Messaggio di conferma, senza redirect automatico
       setMsg("Registrazione completata! Ora puoi accedere.");
-      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
       setMsg(err.message);
     }
@@ -58,15 +61,26 @@ function Register() {
       </form>
 
       {msg && (
-        <p
-          style={{
-            marginTop: "1rem",
-            color: msg.toLowerCase().includes("errore") ? "red" : "green",
-            textAlign: "center",
-          }}
-        >
-          {msg}
-        </p>
+        <div style={{ marginTop: "1rem", textAlign: "center" }}>
+          <p
+            style={{
+              color: msg.toLowerCase().includes("errore") ? "red" : "green",
+            }}
+          >
+            {msg}
+          </p>
+
+          {/* Bottone per andare al login solo se registrazione OK */}
+          {!msg.toLowerCase().includes("errore") && (
+            <button
+              className="form-button"
+              style={{ marginTop: "0.5rem" }}
+              onClick={() => navigate("/login")}
+            >
+              Vai al login
+            </button>
+          )}
+        </div>
       )}
     </div>
   );
