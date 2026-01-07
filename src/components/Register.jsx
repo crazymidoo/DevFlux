@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const BASE_URL = window.location.origin.replace('-5174', '-5000');
-
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,26 +10,18 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
-      const res = await fetch(`${BASE_URL}/register`, {
+      const res = await fetch("/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
-      // Leggiamo il testo e facciamo parse solo se è JSON
-      const text = await res.text();
-      let data;
-      try {
-        data = text ? JSON.parse(text) : {};
-      } catch {
-        throw new Error("Errore: il backend non ha risposto con JSON");
-      }
-
+      const data = await res.json();
       if (!res.ok) throw new Error(data.msg || "Errore nella registrazione");
 
-      setMsg("Registrazione completata! Ora puoi fare login.");
+      setMsg("Registrazione completata! Ora puoi accedere.");
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
       setMsg(err.message);
     }
@@ -53,6 +43,7 @@ function Register() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Password"
@@ -60,12 +51,23 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
         <button type="submit" className="form-button">
           Registrati
         </button>
       </form>
 
-      {msg && <p style={{ color: msg.includes("Errore") ? "red" : "green" }}>{msg}</p>}
+      {msg && (
+        <p
+          style={{
+            marginTop: "1rem",
+            color: msg.toLowerCase().includes("errore") ? "red" : "green",
+            textAlign: "center",
+          }}
+        >
+          {msg}
+        </p>
+      )}
     </div>
   );
 }

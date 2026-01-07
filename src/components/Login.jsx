@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const BASE_URL = window.location.origin.replace('-5174', '-5000');
-
 function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,30 +10,20 @@ function Login({ setUser }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const res = await fetch(`${BASE_URL}/login`, {
+      const res = await fetch("/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
-      // Leggiamo il testo e poi facciamo parse solo se è JSON
-      const text = await res.text();
-      let data;
-      try {
-        data = text ? JSON.parse(text) : {};
-      } catch {
-        throw new Error("Errore: il backend non ha risposto con JSON");
-      }
-
+      const data = await res.json();
       if (!res.ok) throw new Error(data.msg || "Errore nel login");
 
-      const loggedUser = { email, courses: data.courses || [] };
-      localStorage.setItem("user", JSON.stringify(loggedUser));
-      setUser(loggedUser);
-
-      navigate("/"); // login ok, torna alla home
+      const user = { email, courses: data.courses || [] };
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      navigate("/");
     } catch (err) {
       setMsg(err.message);
     }
@@ -47,7 +35,7 @@ function Login({ setUser }) {
         ↩ Indietro
       </button>
 
-      <h2>Login</h2>
+      <h2>Accedi</h2>
 
       <form onSubmit={handleLogin}>
         <input
@@ -57,6 +45,7 @@ function Login({ setUser }) {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Password"
@@ -64,12 +53,13 @@ function Login({ setUser }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
         <button type="submit" className="form-button">
           Accedi
         </button>
       </form>
 
-      {msg && <p style={{ color: "red" }}>{msg}</p>}
+      {msg && <p style={{ color: "red", marginTop: "1rem" }}>{msg}</p>}
     </div>
   );
 }

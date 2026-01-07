@@ -4,7 +4,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true,
-    historyApiFallback: true,
+    proxy: {
+      "/login": "http://localhost:5000",
+      "/register": "http://localhost:5000",
+      "/unlock-course": "http://localhost:5000",
+    },
   },
 });
