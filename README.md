@@ -18,9 +18,13 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 
-## Per Avviare, nel Terminale:
-- Controllare URL pubblico del backend (quello che risponde con { "msg": "Backend funzionante" }). Aggiornare BASE_URL in tutti i file frontend che fanno fetch (Login.jsx, Register.jsx, Success.jsx) --> **const BASE_URL = "https://NUOVO-URL-DELL-BACKEND"**;
-- In **CourseInfo.jsx** copiare URL del Codespace in **"&return=NUOVO_URL/#/success"** e la riga sotto **"&cancel_return=NUOVO_URL/#/"** --> (PayPal deve sapere dove tornare dopo il pagamento)
-- **Backend** --> **cd backend** (per entrare nella cartella) , **npm install** e poi **node index.js** per avviare (NB! impostare la **porta 5000** su "Visibilità" **"Public"** e non "Private")
-- **Frontend** --> **npm run dev** per avviare
- 
+## Come Avviare il Progetto:
+1. **Avvia il backend**:
+   - Apri il terminale e entra nella cartella backend: **cd backend**
+   - Installa le dipendenze: **npm install**
+   - Avvia il server: **node index.js**
+Il backend è configurato per la porta 5000. Assicurati che la porta sia accessibile (**in Codespaces deve essere Public**).
+
+2. **Avvia il frontend**:
+   - Apri un nuovo terminale nella cartella principale del progetto e lancia: **npm run dev**
+
