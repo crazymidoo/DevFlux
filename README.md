@@ -17,7 +17,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 
-
 ## Come Avviare il Progetto:
 1. **Avvia il backend**:
    - Apri il terminale e entra nella cartella backend: **cd backend**
